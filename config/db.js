@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 module.exports.connectToMongoDb = async () => {
     mongoose.set('strictQuery', false)
     mongoose
-    .connect(" ")
+    .connect("mongodb+srv://baccarhanine:pvKCqF5yZEsIQEZj@cluster0.oisbgie.mongodb.net/")
     .then(() => { console.log("connect to db") 
 
     })
@@ -12,3 +12,4 @@ module.exports.connectToMongoDb = async () => {
      })
 }
 //pvKCqF5yZEsIQEZj mot de passe base 
+//mongodb+srv://baccarhanine:pvKCqF5yZEsIQEZj@cluster0.oisbgie.mongodb.net/
