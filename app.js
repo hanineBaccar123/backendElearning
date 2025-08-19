@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users',usersRouter)
+app.use('/users',usersRouter);
 
 
 
@@ -47,7 +47,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.json('error');
+   res.json({
+    message: err.message,
+    error: req.app.get('env') === 'development' ? err : {}
+  });  // <-- Now you'll see the actual error!
 });
 
 const server = http.createServer(app)
