@@ -2,8 +2,8 @@ const mongoose =  require('mongoose')
 const PaiementSchema =  new mongoose.Schema({
 
     date:Date,
-    montant:Float32Array,
+    montant:Number,
     
 });
 const Paiement = mongoose.model("Paiement",PaiementSchema)
-module.exports= Paiement;
+module.exports= Paiement; 

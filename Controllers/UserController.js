@@ -42,8 +42,10 @@ module.exports.addClient = async (req,res) => {
         res.status(500).json({message : error.message})
     }
 }
+
+
 module.exports.searchUsersByFirstName = async (req, res) => {
-  // ?name=John
+  
   try {
 
         const { firstname } = req.body;

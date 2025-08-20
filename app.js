@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require("cors");
 
 
 const {connectToMongoDb} = require('./config/db')
@@ -16,13 +17,19 @@ require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/UserRouter')
 var userController = require('./Controllers/UserController')
+var coursRouter = require('./routes/CoursRouter')
+var CoursController = require('./Controllers/CoursController')
+var CommentaireRouter = require('./routes/CommentaireRouter')
+var paiementRouter = require('./routes/CommentaireRouter')
+var PaiementController = require('./Controllers/PaiementController')
+
 
 
 
 var app = express();
 
 
-
+app.use(cors({ origin: "http://localhost:3000" })); 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +38,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users',usersRouter);
+app.use('/cours',coursRouter)
+app.use('/commentaire',CommentaireRouter)
+app.use('/paiement',paiementRouter)
+
 
 
 

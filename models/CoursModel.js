@@ -2,7 +2,7 @@ const mongoose =  require('mongoose')
 const CoursSchema =  new mongoose.Schema({
 
     name:String,
-    prix:Float16Array,
+    prix:Number,
     description:String
 
 });
