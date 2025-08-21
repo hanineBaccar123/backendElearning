@@ -32,7 +32,7 @@ module.exports.addClient = async (req,res) => {
     try {
 
         const {firstname , lastname , email , password  }=req.body
-        const role = "client" ;
+        const role = "student" ;
         const user = new userModel({firstname , lastname , email , password})
         const addedUser = await user.save()
         res.status(200).json({addedUser})
@@ -84,40 +84,42 @@ module.exports.deleteUserById = async (req,res) => {
 };
 
 
-
-module.exports.addClientV2 = async (req, res) => {
-  try {
-    //logique
-    const userData = req.body;
-    userData.role = "client";
-
-    const user = new userModel(userData);
-    const addedUser = await user.save();
-    res.status(200).json({ addedUser });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-
 module.exports.addClientWithImage = async (req, res) => {
   try {
     //logique
     const userData = req.body;
-    userData.role = "client";
-
+   
+ console.log("1")   
     if(req.file){
         const {filename} = req.file
         userData.user_image= filename
+         console.log("2")   
     }
-
-    const user = new userModel(userData);
+    console.log("3")   
+   const user = new userModel(userData);
     const addedUser = await user.save();
     res.status(200).json({ addedUser });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
+module.exports.updateUser = async (req,res) => {
+    try {
+
+        const id = req.params.id    
+        const updateData = req.body; 
+        const user = await userModel.findByIdAndUpdate(id,updateData, { new: true })
+        res.status(200).json({user})
+
+    }
+    catch  (error){
+        res.status(500).json({message : error.message});
+    }
+};
+
 
 
 

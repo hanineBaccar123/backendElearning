@@ -11,8 +11,10 @@ router.get('/getUserById/:id', UserController.getUsersById);
 router.post('/addClient', UserController.addClient);
 router.get('/searchUsersByFirstName', UserController.searchUsersByFirstName);
 router.delete('/deleteUserById/:id', UserController.deleteUserById);
-router.post('/addClientV2',UserController.addClientV2);
+
 router.post('/addClientWithImage', uploadfile.single("user_image"),UserController.addClientWithImage);
+router.put('/updateUser/:id',UserController.updateUser);
+
 
 
 
