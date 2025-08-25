@@ -12,7 +12,13 @@ const userSchema =  new mongoose.Schema({
     role: { type:String, enum:['student','admin','teacher']},
     user_image: {type : String , required:false ,default:'client-care_15755360.png'},
     isActive:Boolean,
-    isBanned:Boolean
+    isBanned:Boolean,
+    
+    courses: [{type : mongoose.Schema.Types.ObjectId , ref:'Cours'}],//many
+    payements: [{type : mongoose.Schema.Types.ObjectId , ref:'Paiement'}],//many
+    comments: [{type : mongoose.Schema.Types.ObjectId , ref:'Commentaire'}]//many
+
+
 
 },{timestamps:true});
 

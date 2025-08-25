@@ -3,7 +3,13 @@ const CoursSchema =  new mongoose.Schema({
 
     name:String,
     prix:Number,
-    description:String
+    description:String,
+
+
+   students : [{type : mongoose.Schema.Types.ObjectId , ref:'user'}],//many
+   teacher : {type : mongoose.Schema.Types.ObjectId , ref:'user'},//one
+   comments : [{type : mongoose.Schema.Types.ObjectId , ref:'commentaire'}],//many
+
 
 });
 const Cours = mongoose.model("Cours",CoursSchema)
