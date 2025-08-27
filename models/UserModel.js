@@ -9,7 +9,7 @@ const userSchema =  new mongoose.Schema({
 
     },
     password:{type: String, required:true , minlength:12  },
-    role: { type:String, enum:['student','teacher']},
+    role: { type:String, enum:['student','teacher','admin']},
     user_image: {type : String , required:false ,default:'client-care_15755360.png'},
     isActive:Boolean,
     isBanned:Boolean,

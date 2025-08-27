@@ -15,6 +15,9 @@ router.delete('/deleteUserById/:id', UserController.deleteUserById);
 router.post('/addClientWithImage', uploadfile.single("user_image"),UserController.addClientWithImage);
 router.put('/updateUser/:id',UserController.updateUser);
 
+router.post('/register', UserController.register);
+router.post('/login', UserController.login);
+
 
 
 

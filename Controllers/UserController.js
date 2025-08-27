@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const userModel = require("../models/UserModel") 
+const bcrypt = require("bcrypt")
 
 
 module.exports.getAllUsers = async (req,res) => {
@@ -123,6 +124,44 @@ module.exports.updateUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+module.exports.register = async (req,res) => {
+    try {
+
+        const {firstname , lastname , email , password, role  }=req.body
+        
+        const user = new userModel({firstname , lastname , email , password,role})
+        const addedUser = await user.save()
+        res.status(200).json({addedUser})
+
+    }
+    catch  (error){
+        res.status(500).json({message : error.message})
+    }
+}
+
+module.exports.login = async (req,res) => {
+    try {
+
+        const {email , password} = req.body
+        
+        const user = await userModel.findOne({email})
+        if (!user) {
+            throw new Error("Invalid credentials")
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+            throw new Error("Invalid credentials")
+        }
+
+        res.status(200).json({user})
+
+    }
+    catch  (error){
+        res.status(500).json({message : error.message})
+    }
+}
 
 
 
