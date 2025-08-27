@@ -3,6 +3,20 @@ const mongoose = require('mongoose')
 const CommentaireModel = require("../models/CommentaireModel")
 
 
+
+
+module.exports.getAllCommentes = async (req,res) => {
+    try {
+
+        const CommentaireList = await CommentaireModel.find()
+        res.status(200).json({ CommentaireList });
+
+    }
+    catch  (error){
+        res.status(500).json({message : error.message})
+    }
+};
+
 module.exports.addCommentaire = async (req,res) => {
     try {
 

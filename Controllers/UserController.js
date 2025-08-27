@@ -31,9 +31,9 @@ module.exports.getUsersById = async (req,res) => {
 module.exports.addClient = async (req,res) => {
     try {
 
-        const {firstname , lastname , email , password  }=req.body
-        const role = "student" ;
-        const user = new userModel({firstname , lastname , email , password})
+        const {firstname , lastname , email , password, role  }=req.body
+        
+        const user = new userModel({firstname , lastname , email , password,role})
         const addedUser = await user.save()
         res.status(200).json({addedUser})
 
@@ -107,7 +107,7 @@ module.exports.addClientWithImage = async (req, res) => {
 module.exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params; 
-    const { firstName, lastName, email} = req.body;
+    const { firstName, lastName, email,role} = req.body;
 
     const checkIfUserExists = await userModel.findById(id);
     if (!checkIfUserExists) {
@@ -115,7 +115,7 @@ module.exports.updateUser = async (req, res) => {
     }
 
     updatedUser = await userModel.findByIdAndUpdate(id, {
-      $set: { firstName, lastName, email },
+      $set: { firstName, lastName, email,role },
     });
 
     res.status(200).json({ updatedUser });

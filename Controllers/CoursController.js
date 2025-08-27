@@ -18,9 +18,9 @@ module.exports.getAllCours = async (req,res) => {
 module.exports.addCours = async (req,res) => {
     try {
 
-        const { name , prix , description }=req.body
+        const { name , prix , description,level,language,duration}=req.body
         
-        const Cours = new CoursModel({name, prix, description})
+        const Cours = new CoursModel({name , prix , description,level,language,duration})
         const addedCours= await Cours.save()
         res.status(200).json({addedCours})
 

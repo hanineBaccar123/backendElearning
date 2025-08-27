@@ -4,6 +4,10 @@ const CoursSchema =  new mongoose.Schema({
     name:String,
     prix:Number,
     description:String,
+    level:String,
+    language:String,
+    duration: Number,
+    
 
 
    students : [{type : mongoose.Schema.Types.ObjectId , ref:'user'}],//many
